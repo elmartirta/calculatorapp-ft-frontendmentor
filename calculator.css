@@ -1,0 +1,20 @@
+.flex-grid {
+    display:flex;
+    flex-direction: column;
+}
+
+.flex-row{
+    display:flex;
+    height: 0px;
+    flex-grow:1;
+}
+
+.flex-row > *{
+    width: 0px; /* remove default width to let flexbox handle resizing */
+    flex-grow:1;
+}
+
+#keypad{
+    width: 400px;
+    height: 400px;
+}
