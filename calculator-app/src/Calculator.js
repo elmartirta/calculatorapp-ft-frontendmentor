@@ -1,6 +1,6 @@
 import './Calculator.css'
 
-function App() {
+function Calculator() {
   return (
     <div id="calculator">
       <div id="header">
@@ -58,4 +58,4 @@ function App() {
   );
 }
 
-export default App;
+export default Calculator;
