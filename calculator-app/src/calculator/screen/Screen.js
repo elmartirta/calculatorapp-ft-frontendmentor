@@ -1,7 +1,7 @@
-function Screen(){
+function Screen(props){
     return (
     <div id="screen" class="shadowed">
-        <p id="screen-value">399,981</p>
+        <p id="screen-value">{props.value}</p>
     </div>
     );
 }
