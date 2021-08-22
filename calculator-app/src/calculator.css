@@ -1,0 +1,138 @@
+:root {
+  /* Custom defined colors */
+  /* Theme 1 */
+  --very-dark-desaturated-blue-main: hsl(222, 26%, 31%);
+  --very-dark-desaturated-blue-keypad: hsl(223, 31%, 20%);
+  --very-dark-desaturated-blue-screen: hsl(224, 36%, 15%);
+  --desaturated-dark-blue-key-background: hsl(225, 21%, 49%);
+  --desaturated-dark-blue-key-shadow: hsl(224, 28%, 35%);
+  --red-key-background: hsl(6, 63%, 50%);
+  --dark-red-key-shadow: hsl(6, 70%, 34%);
+  --light-grayish-orange-key-background: hsl(30, 25%, 89%);
+  --grayish-orange-key-shadow: hsl(28, 16%, 65%);
+  --very-dark-grayish-blue-text: hsl(221, 14%, 31%);
+
+
+  /* Positioning */
+  --key-shadow-x: 0px;
+  --key-shadow-y: 3px;
+}
+
+.flex-grid {
+  display:flex;
+  flex-direction: column;
+}
+
+.flex-row{
+  display:flex;
+  height: 0px;
+  flex-grow:1;
+}
+
+.flex-row > *{
+  width: 0px; /* remove default width to let flexbox handle resizing */
+  flex-grow:1;
+}
+
+.shadowed {
+  border-radius: 10px;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+body{
+  background-color: var(--very-dark-desaturated-blue-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color:white;
+  font-family: Spartan, sans-serif;
+}
+
+#calculator {
+  margin:auto;
+  display:flex;
+  flex-direction: column;
+  width: 500px;
+}
+
+#calculator > * {
+  margin: 10px;
+}
+
+#header {
+  display:flex;
+  justify-content: space-between;
+}
+
+#header h1{
+  margin-top: 20px;
+  margin-bottom:0px;
+}
+
+#theme-selector {
+  display:flex;
+  align-items: center;
+}
+#theme-label{
+  margin: 10px;
+}
+#theme-toggle{
+  margin: 10px;
+  height: 40px;
+  width: 50px;
+}
+
+
+#screen{
+  text-align:right;
+  font-size: 32px;
+  padding: 0px 32px;
+  border-radius: 10px;
+  background-color: var(--very-dark-desaturated-blue-screen)
+}
+
+#keypad{
+  padding: 10px;
+  height: 350px;
+  background-color: var(--very-dark-desaturated-blue-keypad)
+}
+
+#keypad > div > button {
+  margin: 10px;
+  border-radius: 10px;
+  font-size: 24px;
+  color: var(--very-dark-grayish-blue-text);
+  border: none;
+  background-color: var(--light-grayish-orange-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--grayish-orange-key-shadow);
+}
+
+#keypad > div > button.strong-key {
+  color: white;
+  font-size: 20px;
+  background-color: var(--red-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--dark-red-key-shadow)
+}
+
+#keypad > div > button.emphasized-key {
+  color: white;
+  font-size: 20px;
+  background-color: var(--desaturated-dark-blue-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--desaturated-dark-blue-key-shadow);
+}
+
+#keypad > div > button:active {
+  box-shadow: 0px 0px blue;
+  transform: translate(var(--key-shadow-x), var(--key-shadow-y));
+}

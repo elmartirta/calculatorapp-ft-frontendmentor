@@ -1,6 +1,5 @@
 import logo from './logo.svg';
-import './App.css';
-import './calculator.css'
+import './Calculator.css'
 
 function App() {
   return (
