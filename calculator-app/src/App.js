@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './Calculator.css'
 
 function App() {
