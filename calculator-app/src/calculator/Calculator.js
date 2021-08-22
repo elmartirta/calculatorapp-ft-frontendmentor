@@ -1,7 +1,7 @@
 import './Calculator.css'
-import Header from './components/Header'
-import Screen from './components/Screen'
-import Keypad from'./components/Keypad'
+import Header from './header/Header'
+import Screen from './screen/Screen'
+import Keypad from'./keypad/Keypad'
 
 function Calculator() {
   return (

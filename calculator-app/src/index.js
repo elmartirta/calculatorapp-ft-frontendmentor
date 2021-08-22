@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Calculator from './Calculator';
+import Calculator from './calculator/Calculator';
 import Attribution from './Attribution';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
     <Calculator/>
-    <Attribution />
+    <Attribution/>
   </React.StrictMode>,
   document.getElementById('root')
 );
