@@ -7,11 +7,10 @@ import Keypad from'./keypad/Keypad'
 function Calculator(props) {
   const [screenValue, setScreenValue] = useState(399491)
 
-  function onKeyPress(newValue){
-    setScreenValue(newValue);
+  function onKeyPress(keyPress){
+    setScreenValue(keyPress.name);
   }
   
-
   return (
     <div id="calculator">
       <Header></Header>
