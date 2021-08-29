@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'Spartan', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap');
+}
+
 :root {
   /* Custom defined colors */
   /* Theme 1 */
@@ -109,6 +114,7 @@ body{
 }
 
 #keypad > div > button {
+  font-family: Spartan, sans-serif;
   margin: 10px;
   border-radius: 10px;
   font-size: 24px;
