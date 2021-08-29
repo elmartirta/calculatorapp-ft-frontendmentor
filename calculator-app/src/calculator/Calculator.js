@@ -7,24 +7,45 @@ import PressType from "./keypad/PressType"
 import KeyPress from "./keypad/KeyPress";
 
 function Calculator(props) {
-  const [screenValue, setScreenValue] = useState(399491)
+  const [activeValue, setActiveValue] = useState([0])
+
+  function pushDigit(arr, keyPress){
+    const newarr = arr.slice()
+    if (newarr.length === 1 && newarr[0] === 0) {newarr.pop()}
+    newarr.push(keyPress.toNum())
+    return newarr
+  }
+
+  function popDigit(arr){
+    let newarr = arr.slice()
+    newarr.pop()
+    if (newarr.length === 0) {newarr = [0]}
+    return newarr
+  }
+
+  function pushDot(arr){
+    const newArr = arr.slice();
+    const periodInArr = newArr.indexOf(".") !== -1
+    if (!periodInArr) newArr.push(".") ;
+    return newArr;
+  }
 
   function onKeyPress(keyPress){
     if (keyPress.pressCategory === PressType.DIGIT){
-      setScreenValue("#Digit");
+      setActiveValue((n) => pushDigit(n, keyPress))
     }else if (keyPress.pressCategory === PressType.OPERAND){
-      setScreenValue("#Operand");
+      setActiveValue(["#Operand"]);
     }else{
       if (keyPress === KeyPress.DELETE){
-        setScreenValue("#Delete");
+        setActiveValue((n) => popDigit(n))
       }else if (keyPress === KeyPress.EQUAL){
-        setScreenValue("#Equal")
+        setActiveValue(["#Equal"])
       }else if (keyPress === KeyPress.DOT){
-        setScreenValue("#Dot")
+        setActiveValue((n) => pushDot(n))
       }else if (keyPress === KeyPress.RESET){
-        setScreenValue("#Reset")
+        setActiveValue(["#Reset"])
       }else{
-        setScreenValue("#Missing")
+        setActiveValue(["#Missing"])
       }
     }
   }
@@ -32,7 +53,7 @@ function Calculator(props) {
   return (
     <div id="calculator">
       <Header></Header>
-      <Screen value={screenValue}></Screen>
+      <Screen value={activeValue.join("")}></Screen>
       <Keypad onKeyPress={onKeyPress}></Keypad>
     </div>
   );

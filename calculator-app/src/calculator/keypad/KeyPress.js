@@ -27,6 +27,19 @@ class KeyPress {
         this.name = name;
         this.pressCategory = pressCategory
     }
+
+    toNum(){
+        if (this.name === "ONE") {return 1;}
+        if (this.name === "TWO") {return 2;}
+        if (this.name === "THREE") {return 3;}
+        if (this.name === "FOUR") {return 4;}
+        if (this.name === "FIVE") {return 5;}
+        if (this.name === "SIX") {return 6;}
+        if (this.name === "SEVEN") {return 7;}
+        if (this.name === "EIGHT") {return 8;}
+        if (this.name === "NINE") {return 9;}
+        if (this.name === "ZERO") {return 0;}
+    }
 }
 
 export default KeyPress;
