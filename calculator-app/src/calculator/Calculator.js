@@ -8,9 +8,13 @@ import KeyPress from "./keypad/KeyPress";
 
 function Calculator(props) {
   const [activeValue, setActiveValue] = useState([0])
+  const [isPrimed, setIsPrimed] = useState(false)
 
   function pushDigit(arr, keyPress){
-    const newarr = arr.slice()
+    if (isPrimed){
+      setIsPrimed(false)
+    }
+    const newarr = (isPrimed) ? [0] : arr.slice() 
     if (newarr.length === 1 && newarr[0] === 0) {newarr.pop()}
     newarr.push(keyPress.toNum())
     return newarr
@@ -34,16 +38,16 @@ function Calculator(props) {
     if (keyPress.pressCategory === PressType.DIGIT){
       setActiveValue((n) => pushDigit(n, keyPress))
     }else if (keyPress.pressCategory === PressType.OPERAND){
-      setActiveValue(["#Operand"]);
+      setIsPrimed(true)
     }else{
       if (keyPress === KeyPress.DELETE){
         setActiveValue((n) => popDigit(n))
       }else if (keyPress === KeyPress.EQUAL){
-        setActiveValue(["#Equal"])
+        setIsPrimed(true)
       }else if (keyPress === KeyPress.DOT){
         setActiveValue((n) => pushDot(n))
       }else if (keyPress === KeyPress.RESET){
-        setActiveValue(["#Reset"])
+        setActiveValue([0])
       }else{
         setActiveValue(["#Missing"])
       }
