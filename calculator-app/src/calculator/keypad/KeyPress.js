@@ -23,6 +23,8 @@ class KeyPress {
     static RESET = new KeyPress("RESET");
     static EQUAL = new KeyPress("EQUAL");
 
+    static EMPTY = new KeyPress("EMPTY", PressType.UNDEFINED)
+
     constructor(name, pressCategory=PressType.UNDEFINED){
         this.name = name;
         this.pressCategory = pressCategory

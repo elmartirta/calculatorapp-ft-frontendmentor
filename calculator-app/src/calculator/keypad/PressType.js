@@ -1,7 +1,7 @@
 class PressType{
-    static UNDEFINED = new PressType("UNDEFINED");
-    static DIGIT = new PressType("DIGIT");
-    static OPERAND = new PressType("OPERAND");
+    static EMPTY = new PressType("empty");
+    static DIGIT = new PressType("digit");
+    static OPERAND = new PressType("operand");
     constructor(name){
         this.name = name;
     }

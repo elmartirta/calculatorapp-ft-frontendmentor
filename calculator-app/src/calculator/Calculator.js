@@ -10,7 +10,7 @@ import KeyPress from "./keypad/KeyPress";
 function Calculator(props) {
   const [activeValue, setActiveValue] = useState([0])
   const [cachedValue, setCachedValue] = useState([0])
-  const [operand, setOperand] = useState(PressType.UNDEFINED.name);
+  const [operand, setOperand] = useState(KeyPress.EMPTY.name);
   const [isPrimed, setIsPrimed] = useState(false)
 
   function pushDigit(arr, keyPress){
@@ -38,25 +38,28 @@ function Calculator(props) {
     return newArr;
   }
 
-  // function toNum(digitArray){
-  //   return Number(digitArray.join(""))
-  // }
+  function toNum(digitArray){
+    return Number(digitArray.join(""))
+  }
 
-  // function toDigitArray(number){
-  //   return String(number).split("");
-  // }
+  function toDigitArray(number){
+    return String(number).split("");
+  }
 
-  // function performArithmetic(keyPress){
-  //   if (keyPress === KeyPress.PLUS){
-  //     setActiveValue((a) => toDigitArray(toNum(cachedValue) + toNum(a)))
-  //   } else if (keyPress === KeyPress.MINUS){
-  //     setActiveValue((a) => toDigitArray(toNum(cachedValue) - toNum(a)))
-  //   } else if (keyPress === KeyPress.MULTIPLY) {
-  //     setActiveValue((a) => toDigitArray(toNum(cachedValue) * toNum(a)))
-  //   } else if (keyPress === KeyPress.DIVIDE) {
-  //     setActiveValue((a) => toDigitArray(toNum(cachedValue) / toNum(a)))
-  //   }
-  // }
+  function performArithmetic(operand, a, b){
+    console.log(operand)
+    if (operand === KeyPress.PLUS.name){
+      return toDigitArray(toNum(a) + toNum(b))
+    } else if (operand === KeyPress.MINUS.name){
+      return toDigitArray(toNum(a) - toNum(b))
+    } else if (operand === KeyPress.MULTIPLY.name) {
+      return toDigitArray(toNum(a) * toNum(b))
+    } else if (operand === KeyPress.DIVIDE.name) {
+      return toDigitArray(toNum(a) / toNum(b))
+    } else {
+      return ["ERROR#" + operand]
+    }
+  }
 
   function onKeyPress(keyPress){
     if (keyPress.pressCategory === PressType.DIGIT){
@@ -68,12 +71,14 @@ function Calculator(props) {
       if (keyPress === KeyPress.DELETE){
         setActiveValue((n) => popDigit(n))
       }else if (keyPress === KeyPress.EQUAL){
+        setActiveValue((a) => performArithmetic(operand, cachedValue, activeValue))
         setIsPrimed(true)
       }else if (keyPress === KeyPress.DOT){
         setActiveValue((n) => pushDot(n))
       }else if (keyPress === KeyPress.RESET){
         setActiveValue([0])
         setCachedValue([0])
+        setOperand(KeyPress.EMPTY.name)
       }else{
         setActiveValue(["#Missing"])
       }
