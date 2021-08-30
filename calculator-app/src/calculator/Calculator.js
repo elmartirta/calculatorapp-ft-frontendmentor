@@ -48,40 +48,50 @@ function Calculator(props) {
 
   function performArithmetic(operand, a, b){
     console.log(operand)
-    if (operand === KeyPress.PLUS.name){
-      return toDigitArray(toNum(a) + toNum(b))
-    } else if (operand === KeyPress.MINUS.name){
-      return toDigitArray(toNum(a) - toNum(b))
-    } else if (operand === KeyPress.MULTIPLY.name) {
-      return toDigitArray(toNum(a) * toNum(b))
-    } else if (operand === KeyPress.DIVIDE.name) {
-      return toDigitArray(toNum(a) / toNum(b))
-    } else {
-      return ["ERROR#" + operand]
+    switch(operand){
+      case KeyPress.PLUS.name:
+        return toDigitArray(toNum(a) + toNum(b))
+      case KeyPress.MINUS.name:
+        return toDigitArray(toNum(a) - toNum(b))
+      case KeyPress.MULTIPLY.name:
+        return toDigitArray(toNum(a) * toNum(b))
+      case KeyPress.DIVIDE.name:
+        return toDigitArray(toNum(a) / toNum(b))
+      default:
+        return ["ERROR#" + operand]
     }
   }
 
   function onKeyPress(keyPress){
-    if (keyPress.pressCategory === PressType.DIGIT){
-      setActiveValue((n) => pushDigit(n, keyPress))
-    }else if (keyPress.pressCategory === PressType.OPERAND){
-      setIsPrimed(true)
-      setOperand(keyPress.name)
-    }else{
-      if (keyPress === KeyPress.DELETE){
+    switch(keyPress){
+      case KeyPress.DELETE:
         setActiveValue((n) => popDigit(n))
-      }else if (keyPress === KeyPress.EQUAL){
+        break;
+      case KeyPress.EQUAL:        
         setActiveValue((a) => performArithmetic(operand, cachedValue, activeValue))
         setIsPrimed(true)
-      }else if (keyPress === KeyPress.DOT){
+        break;
+      case KeyPress.DOT:
         setActiveValue((n) => pushDot(n))
-      }else if (keyPress === KeyPress.RESET){
+        break;
+      case KeyPress.RESET:
         setActiveValue([0])
         setCachedValue([0])
         setOperand(KeyPress.EMPTY.name)
-      }else{
-        setActiveValue(["#Missing"])
-      }
+        break;
+      default:
+        switch (keyPress.pressCategory){
+          case PressType.DIGIT:
+            setActiveValue((n) => pushDigit(n, keyPress))
+            break;
+          case PressType.OPERAND:
+            setIsPrimed(true)
+            setOperand(keyPress.name)
+            break;
+          default:
+            setActiveValue(["#Missing"])
+            break;
+        }
     }
   }
   
