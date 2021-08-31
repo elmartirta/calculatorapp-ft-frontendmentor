@@ -133,8 +133,6 @@ function Calculator(props) {
     <div id="calculator">
       <Header></Header>
       <Screen value={activeValue.join("")}></Screen>
-      <Screen value={cachedValue.join("")}></Screen>
-      <Screen value={operand}></Screen>
       <Keypad onKeyPress={onKeyPress}></Keypad>
     </div>
   );
