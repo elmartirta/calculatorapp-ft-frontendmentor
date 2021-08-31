@@ -66,7 +66,20 @@ function Calculator(props) {
   function onKeyPress(keyPress){
     switch(keyPress){
       case KeyPress.DELETE:
-        if ((prevState === KeyPress.EQUAL.name)) return;
+        if (!(
+          prevState === KeyPress.ONE.name ||
+          prevState === KeyPress.TWO.name ||
+          prevState === KeyPress.THREE.name ||
+          prevState === KeyPress.FOUR.name ||
+          prevState === KeyPress.FIVE.name ||
+          prevState === KeyPress.SIX.name ||
+          prevState === KeyPress.SEVEN.name ||
+          prevState === KeyPress.EIGHT.name ||
+          prevState === KeyPress.NINE.name ||
+          prevState === KeyPress.ZERO.name ||
+          prevState === KeyPress.DOT.name ||
+          prevState === KeyPress.DELETE.name
+        )) return;
         setActiveValue((n) => popDigit(n))
         break;
       case KeyPress.EQUAL: 
