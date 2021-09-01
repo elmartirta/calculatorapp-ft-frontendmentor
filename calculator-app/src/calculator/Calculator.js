@@ -48,7 +48,6 @@ function Calculator(props) {
   }
 
   function performArithmetic(operand, object, actor){
-    console.log(operand)
     switch(operand){
       case KeyPress.PLUS:
         return toDigitArray(toNum(object) + toNum(actor))
@@ -130,7 +129,6 @@ function Calculator(props) {
         KeyPress.isOperand(prevState) ||
         prevState === KeyPress.EQUAL
       )){
-      console.log(prevState)
       setActiveValue((a) => performArithmetic(operand, cachedValue, a))
     }
     setOperand(keyPress)
