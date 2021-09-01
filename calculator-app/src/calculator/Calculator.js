@@ -12,6 +12,7 @@ function Calculator(props) {
   const [operand, setOperand] = useState(KeyPress.EMPTY);
   const [isPrimed, setIsPrimed] = useState(false)
   const [prevState, setPrevState] = useState(KeyPress.EMPTY)
+  const [canDelete, setCanDelete] = useState(true)
 
   function pushDigit(arr, keyPress){
     if (isPrimed){
@@ -90,12 +91,10 @@ function Calculator(props) {
   }
 
   function processDelete(keyPress){
-    if (!(
-      KeyPress.isDigit(prevState) ||
-      prevState === KeyPress.DOT ||
-      prevState === KeyPress.DELETE
-    )) return;
-    setActiveValue((n) => popDigit(n))
+    if (canDelete){
+      setActiveValue((n) => popDigit(n))
+    }
+    setIsPrimed(false)
   }
 
   function processEqual(keyPress){
@@ -107,6 +106,7 @@ function Calculator(props) {
       setActiveValue((a) => performArithmetic(operand, activeValue, cachedValue))
     }
     setIsPrimed(true)
+    setCanDelete(false);
   }
 
   function processDot(){
@@ -121,6 +121,7 @@ function Calculator(props) {
 
   function processDigit(keyPress){
     setActiveValue((n) => pushDigit(n, keyPress))
+    setCanDelete(true);
   }
 
   function processOperand(keyPress){
