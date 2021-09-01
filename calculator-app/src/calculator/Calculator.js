@@ -3,16 +3,15 @@ import './Calculator.css'
 import Header from './header/Header'
 import Screen from './screen/Screen'
 import Keypad from'./keypad/Keypad'
-import PressType from "./keypad/PressType"
 import KeyPress from "./keypad/KeyPress";
 
 
 function Calculator(props) {
   const [activeValue, setActiveValue] = useState([0])
   const [cachedValue, setCachedValue] = useState([0])
-  const [operand, setOperand] = useState(KeyPress.EMPTY.name);
+  const [operand, setOperand] = useState(KeyPress.EMPTY);
   const [isPrimed, setIsPrimed] = useState(false)
-  const [prevState, setPrevState] = useState(KeyPress.EMPTY.name)
+  const [prevState, setPrevState] = useState(KeyPress.EMPTY)
 
   function pushDigit(arr, keyPress){
     if (isPrimed){
@@ -21,7 +20,7 @@ function Calculator(props) {
     }
     const newarr = (isPrimed) ? [0] : arr.slice() 
     if (newarr.length === 1 && newarr[0] === 0) {newarr.pop()}
-    newarr.push(keyPress.toNum())
+    newarr.push(KeyPress.toNum(keyPress))
     return newarr
   }
 
@@ -50,13 +49,13 @@ function Calculator(props) {
   function performArithmetic(operand, object, actor){
     console.log(operand)
     switch(operand){
-      case KeyPress.PLUS.name:
+      case KeyPress.PLUS:
         return toDigitArray(toNum(object) + toNum(actor))
-      case KeyPress.MINUS.name:
+      case KeyPress.MINUS:
         return toDigitArray(toNum(object) - toNum(actor))
-      case KeyPress.MULTIPLY.name:
+      case KeyPress.MULTIPLY:
         return toDigitArray(toNum(object) * toNum(actor))
-      case KeyPress.DIVIDE.name:
+      case KeyPress.DIVIDE:
         return toDigitArray(toNum(object) / toNum(actor))
       default:
         return actor
@@ -67,24 +66,24 @@ function Calculator(props) {
     switch(keyPress){
       case KeyPress.DELETE:
         if (!(
-          prevState === KeyPress.ONE.name ||
-          prevState === KeyPress.TWO.name ||
-          prevState === KeyPress.THREE.name ||
-          prevState === KeyPress.FOUR.name ||
-          prevState === KeyPress.FIVE.name ||
-          prevState === KeyPress.SIX.name ||
-          prevState === KeyPress.SEVEN.name ||
-          prevState === KeyPress.EIGHT.name ||
-          prevState === KeyPress.NINE.name ||
-          prevState === KeyPress.ZERO.name ||
-          prevState === KeyPress.DOT.name ||
-          prevState === KeyPress.DELETE.name
+          prevState === KeyPress.ONE ||
+          prevState === KeyPress.TWO ||
+          prevState === KeyPress.THREE ||
+          prevState === KeyPress.FOUR ||
+          prevState === KeyPress.FIVE ||
+          prevState === KeyPress.SIX ||
+          prevState === KeyPress.SEVEN ||
+          prevState === KeyPress.EIGHT ||
+          prevState === KeyPress.NINE ||
+          prevState === KeyPress.ZERO ||
+          prevState === KeyPress.DOT ||
+          prevState === KeyPress.DELETE
         )) return;
         setActiveValue((n) => popDigit(n))
         break;
       case KeyPress.EQUAL: 
         const a = activeValue;  
-        if (!(prevState === KeyPress.EQUAL.name)) {
+        if (!(prevState === KeyPress.EQUAL)) {
           setActiveValue((a) => performArithmetic(operand, cachedValue, activeValue))
           setCachedValue(a)
         }else{
@@ -98,35 +97,31 @@ function Calculator(props) {
       case KeyPress.RESET:
         setActiveValue([0])
         setCachedValue([0])
-        setOperand(KeyPress.EMPTY.name)
+        setOperand(KeyPress.EMPTY)
         break;
       default:
-        switch (keyPress.pressCategory){
-          case PressType.DIGIT:
-            setActiveValue((n) => pushDigit(n, keyPress))
-            break;
-          case PressType.OPERAND:
-            setIsPrimed(true)
-            if (
-                prevState !== KeyPress.EQUAL.name &&
-                prevState !== KeyPress.PLUS.name &&
-                prevState !== KeyPress.MINUS.name &&
-                prevState !== KeyPress.MULTIPLY.name &&
-                prevState !== KeyPress.DIVIDE.name
-              ){
-              console.log(prevState)
-              setActiveValue((a) => performArithmetic(operand, cachedValue, a))
-            }
-            setOperand(keyPress.name)
-            setCachedValue([0])
-            break;
-          default:
-            setActiveValue(["#Missing"])
-            break;
+        if (KeyPress.isDigit(keyPress)){
+          setActiveValue((n) => pushDigit(n, keyPress))
+        } else if (KeyPress.isOperand(keyPress)){
+          setIsPrimed(true)
+          if (
+              prevState !== KeyPress.EQUAL &&
+              prevState !== KeyPress.PLUS &&
+              prevState !== KeyPress.MINUS &&
+              prevState !== KeyPress.MULTIPLY &&
+              prevState !== KeyPress.DIVIDE
+            ){
+            console.log(prevState)
+            setActiveValue((a) => performArithmetic(operand, cachedValue, a))
+          }
+          setOperand(keyPress)
+          setCachedValue([0])
+        } else {
+          setActiveValue(["#Missing"])
         }
       break;
     }
-    setPrevState(keyPress.name)
+    setPrevState(keyPress)
   }
   
   return (
