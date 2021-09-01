@@ -64,52 +64,76 @@ function Calculator(props) {
 
   function onKeyPress(keyPress){
     switch(keyPress){
-      case KeyPress.DELETE:
-        if (!(
-          KeyPress.isDigit(prevState) ||
-          prevState === KeyPress.DOT ||
-          prevState === KeyPress.DELETE
-        )) return;
-        setActiveValue((n) => popDigit(n))
+      case KeyPress.DELETE: 
+        processDelete(keyPress);
         break;
       case KeyPress.EQUAL: 
-        const a = activeValue;  
-        if (!(prevState === KeyPress.EQUAL)) {
-          setActiveValue((a) => performArithmetic(operand, cachedValue, activeValue))
-          setCachedValue(a)
-        }else{
-          setActiveValue((a) => performArithmetic(operand, activeValue, cachedValue))
-        }
-        setIsPrimed(true)
+        processEqual(keyPress); 
         break;
-      case KeyPress.DOT:
-        setActiveValue((n) => pushDot(n))
+      case KeyPress.DOT: 
+        processDot(keyPress); 
         break;
-      case KeyPress.RESET:
-        setActiveValue([0])
-        setCachedValue([0])
-        setOperand(KeyPress.EMPTY)
+      case KeyPress.RESET: 
+        processReset(keyPress); 
         break;
       default:
-        if (KeyPress.isDigit(keyPress)){
-          setActiveValue((n) => pushDigit(n, keyPress))
+        if (KeyPress.isDigit(keyPress)) {
+          processDigit(keyPress);
         } else if (KeyPress.isOperand(keyPress)){
-          setIsPrimed(true)
-          if (!(
-              KeyPress.isOperand(prevState) ||
-              prevState === KeyPress.EQUAL
-            )){
-            console.log(prevState)
-            setActiveValue((a) => performArithmetic(operand, cachedValue, a))
-          }
-          setOperand(keyPress)
-          setCachedValue([0])
+          processOperand(keyPress)
         } else {
           setActiveValue(["#Missing"])
         }
       break;
     }
     setPrevState(keyPress)
+  }
+
+  function processDelete(keyPress){
+    if ((
+      KeyPress.isDigit(prevState) ||
+      prevState === KeyPress.DOT ||
+      prevState === KeyPress.DELETE
+    )) return;
+    setActiveValue((n) => popDigit(n))
+  }
+
+  function processEqual(keyPress){
+    const a = activeValue;  
+    if (!(prevState === KeyPress.EQUAL)) {
+      setActiveValue((a) => performArithmetic(operand, cachedValue, activeValue))
+      setCachedValue(a)
+    }else{
+      setActiveValue((a) => performArithmetic(operand, activeValue, cachedValue))
+    }
+    setIsPrimed(true)
+  }
+
+  function processDot(){
+    setActiveValue((n) => pushDot(n))
+  }
+
+  function processReset(){
+    setActiveValue([0])
+    setCachedValue([0])
+    setOperand(KeyPress.EMPTY)
+  }
+
+  function processDigit(keyPress){
+    setActiveValue((n) => pushDigit(n, keyPress))
+  }
+
+  function processOperand(keyPress){
+    setIsPrimed(true)
+    if (!(
+        KeyPress.isOperand(prevState) ||
+        prevState === KeyPress.EQUAL
+      )){
+      console.log(prevState)
+      setActiveValue((a) => performArithmetic(operand, cachedValue, a))
+    }
+    setOperand(keyPress)
+    setCachedValue([0])
   }
   
   return (
