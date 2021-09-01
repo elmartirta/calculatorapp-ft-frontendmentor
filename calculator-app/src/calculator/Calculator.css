@@ -64,6 +64,7 @@ body{
   font-family: Spartan, sans-serif;
 }
 
+/* --- Calculator --- */
 #calculator {
   margin:auto;
   display:flex;
@@ -75,6 +76,7 @@ body{
   margin: 10px;
 }
 
+/* --- Header --- */
 #header {
   display:flex;
   justify-content: space-between;
@@ -85,10 +87,12 @@ body{
   margin-bottom:0px;
 }
 
+/* --- Theme Toggle --- */
 #theme-selector {
   display:flex;
   align-items: center;
 }
+
 #theme-label{
   margin: 10px;
 }
@@ -104,14 +108,7 @@ body{
   align-items: center;
 }
 
-#screen{
-  text-align:right;
-  font-size: 32px;
-  padding: 0px 32px;
-  border-radius: 10px;
-  background-color: var(--very-dark-desaturated-blue-screen)
-}
-
+/* --- Keypad --- */
 #keypad{
   padding: 10px;
   height: 350px;
@@ -148,3 +145,11 @@ body{
   transform: translate(var(--key-shadow-x), var(--key-shadow-y));
 }
 
+/* --- Screen --- */
+#screen{
+  text-align:right;
+  font-size: 32px;
+  padding: 0px 32px;
+  border-radius: 10px;
+  background-color: var(--very-dark-desaturated-blue-screen)
+}
