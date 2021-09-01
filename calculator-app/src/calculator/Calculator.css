@@ -92,12 +92,17 @@ body{
 #theme-label{
   margin: 10px;
 }
+
 #theme-toggle{
   margin: 10px;
-  height: 40px;
-  width: 50px;
+  height: 50px;
+  width: 60px;
 }
 
+#theme-toggle > div {
+  text-align: center;
+  align-items: center;
+}
 
 #screen{
   text-align:right;
@@ -142,3 +147,4 @@ body{
   box-shadow: 0px 0px blue;
   transform: translate(var(--key-shadow-x), var(--key-shadow-y));
 }
+
