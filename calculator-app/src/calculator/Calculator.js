@@ -10,16 +10,16 @@ function Calculator(props) {
   const [activeValue, setActiveValue] = useState([0])
   const [cachedValue, setCachedValue] = useState([0])
   const [operand, setOperand] = useState(KeyPress.EMPTY);
-  const [isPrimed, setIsPrimed] = useState(false)
+  const [willCache, setWillCache] = useState(false)
   const [prevState, setPrevState] = useState(KeyPress.EMPTY)
   const [canDelete, setCanDelete] = useState(true)
 
   function pushDigit(arr, keyPress){
-    if (isPrimed){
-      setIsPrimed(false)
+    if (willCache){
+      setWillCache(false)
       setCachedValue(activeValue)
     }
-    const newarr = (isPrimed) ? [0] : arr.slice() 
+    const newarr = (willCache) ? [0] : arr.slice() 
     if (newarr.length === 1 && newarr[0] === 0) {newarr.pop()}
     newarr.push(KeyPress.toNum(keyPress))
     return newarr
@@ -94,7 +94,7 @@ function Calculator(props) {
     if (canDelete){
       setActiveValue((n) => popDigit(n))
     }
-    setIsPrimed(false)
+    setWillCache(false)
   }
 
   function processEqual(keyPress){
@@ -105,7 +105,7 @@ function Calculator(props) {
     }else{
       setActiveValue((a) => performArithmetic(operand, activeValue, cachedValue))
     }
-    setIsPrimed(true)
+    setWillCache(true)
     setCanDelete(false);
   }
 
@@ -125,7 +125,7 @@ function Calculator(props) {
   }
 
   function processOperand(keyPress){
-    setIsPrimed(true)
+    setWillCache(true)
     if (!(
         KeyPress.isOperand(prevState) ||
         prevState === KeyPress.EQUAL
