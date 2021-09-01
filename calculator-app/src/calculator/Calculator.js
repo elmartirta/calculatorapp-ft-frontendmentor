@@ -109,7 +109,10 @@ function Calculator(props) {
   }
 
   function processDot(){
-    setActiveValue((n) => pushDot(n))
+    if (canDelete){
+      setActiveValue((n) => pushDot(n))
+    }
+    setWillCache(false)
   }
 
   function processReset(){
@@ -127,7 +130,8 @@ function Calculator(props) {
     setWillCache(true)
     if (!(
         KeyPress.isOperand(prevState) ||
-        prevState === KeyPress.EQUAL
+        prevState === KeyPress.EQUAL ||
+        prevState === KeyPress.DOT
       )){
       setActiveValue((a) => performArithmetic(operand, cachedValue, a))
     }
