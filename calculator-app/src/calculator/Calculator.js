@@ -90,7 +90,7 @@ function Calculator(props) {
   }
 
   function processDelete(keyPress){
-    if ((
+    if (!(
       KeyPress.isDigit(prevState) ||
       prevState === KeyPress.DOT ||
       prevState === KeyPress.DELETE
