@@ -66,16 +66,7 @@ function Calculator(props) {
     switch(keyPress){
       case KeyPress.DELETE:
         if (!(
-          prevState === KeyPress.ONE ||
-          prevState === KeyPress.TWO ||
-          prevState === KeyPress.THREE ||
-          prevState === KeyPress.FOUR ||
-          prevState === KeyPress.FIVE ||
-          prevState === KeyPress.SIX ||
-          prevState === KeyPress.SEVEN ||
-          prevState === KeyPress.EIGHT ||
-          prevState === KeyPress.NINE ||
-          prevState === KeyPress.ZERO ||
+          KeyPress.isDigit(prevState) ||
           prevState === KeyPress.DOT ||
           prevState === KeyPress.DELETE
         )) return;
@@ -104,13 +95,10 @@ function Calculator(props) {
           setActiveValue((n) => pushDigit(n, keyPress))
         } else if (KeyPress.isOperand(keyPress)){
           setIsPrimed(true)
-          if (
-              prevState !== KeyPress.EQUAL &&
-              prevState !== KeyPress.PLUS &&
-              prevState !== KeyPress.MINUS &&
-              prevState !== KeyPress.MULTIPLY &&
-              prevState !== KeyPress.DIVIDE
-            ){
+          if (!(
+              KeyPress.isOperand(prevState) ||
+              prevState === KeyPress.EQUAL
+            )){
             console.log(prevState)
             setActiveValue((a) => performArithmetic(operand, cachedValue, a))
           }
