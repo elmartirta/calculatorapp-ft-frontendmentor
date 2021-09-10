@@ -1,8 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import Calculator from './Calculator';
+import Calculator from './calculator/Calculator';
 
-test('renders learn react link', () => {
-  render(<Calculator />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+test("Add 1 + 1 = 2", () => {
+  expect(1+2).toBe(3)
+})
+
+test('Renders the word "calc"', () => {
+  render(<Calculator/>);
+  const calcElement = screen.getByText(/calc/);
+  expect(calcElement).toBeInTheDocument();
+})
