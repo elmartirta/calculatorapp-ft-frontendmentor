@@ -146,10 +146,22 @@ body{
 }
 
 /* --- Screen --- */
-#screen{
+#screen {
   text-align:right;
   font-size: 32px;
   padding: 0px 32px;
   border-radius: 10px;
   background-color: var(--very-dark-desaturated-blue-screen)
+}
+
+.attribution {
+  text-align: center;
+}
+
+.attribution > * > a {
+  color:lightblue;
+}
+
+.attribution > * > a:visited {
+  color:lightseagreen;
 }
