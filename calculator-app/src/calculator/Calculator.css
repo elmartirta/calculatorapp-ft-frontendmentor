@@ -69,7 +69,7 @@ body{
   margin:auto;
   display:flex;
   flex-direction: column;
-  width: 500px;
+  width: calc(min(500px, 90vw));
 }
 
 #calculator > * {
@@ -141,7 +141,6 @@ body{
 }
 
 #keypad > div > button:active {
-  box-shadow: 0px 0px blue;
   transform: translate(var(--key-shadow-x), var(--key-shadow-y));
 }
 
