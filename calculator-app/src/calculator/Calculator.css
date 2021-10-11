@@ -3,6 +3,11 @@
   src: url('https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap');
 }
 
+@font-face {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  src: url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible&display=swap');
+}
+
 :root {
   /* Custom defined colors */
   /* Theme 1 */
@@ -53,15 +58,18 @@
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
-body{
-  background-color: var(--very-dark-desaturated-blue-main);
+#container {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color:white;
   font-family: Spartan, sans-serif;
+}
+
+#container.theme-1 {
+  background-color: var(--very-dark-desaturated-blue-main);
+  color:white;
 }
 
 /* --- Calculator --- */
@@ -115,6 +123,9 @@ body{
 #keypad{
   padding: 10px;
   height: 350px;
+}
+
+#keypad.theme-1 {
   background-color: var(--very-dark-desaturated-blue-keypad)
 }
 
@@ -123,22 +134,26 @@ body{
   margin: clamp(0px, 1vw, 8px);
   border-radius: 10px;
   font-size: clamp(var(--key-font-min), 1vw, var(--key-font-max));
-  color: var(--very-dark-grayish-blue-text);
   border: none;
-  background-color: var(--light-grayish-orange-key-background);
-  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--grayish-orange-key-shadow);
 }
+
 #keypad > div > button.text-key{
   font-size: clamp(calc(var(--key-font-min) * 0.7), 4vw, calc(var(--key-font-max) * 0.8));
 }
 
-#keypad > div > button.strong-key {
+#keypad.theme-1 > div > button {
+  color: var(--very-dark-grayish-blue-text);
+  background-color: var(--light-grayish-orange-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--grayish-orange-key-shadow);
+}
+
+#keypad.theme-1 > div > button.strong-key {
   color: white;
   background-color: var(--red-key-background);
   box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--dark-red-key-shadow)
 }
 
-#keypad > div > button.emphasized-key {
+#keypad.theme-1 > div > button.emphasized-key {
   color: white;
   background-color: var(--desaturated-dark-blue-key-background);
   box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--desaturated-dark-blue-key-shadow);
@@ -154,17 +169,33 @@ body{
   font-size: clamp(var(--key-font-min) * 1, 8vw, var(--key-font-max) * 1.4);
   padding: 0px clamp(15px, 4vw,32px);
   border-radius: 10px;
+}
+
+#screen.theme-1{
   background-color: var(--very-dark-desaturated-blue-screen)
 }
 
 .attribution {
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-size: 20px;
   text-align: center;
 }
 
-.attribution > * > a {
-  color:lightblue;
+.attribution > p {
+  margin:0px;
+  padding: 10px;
 }
 
-.attribution > * > a:visited {
-  color:lightseagreen;
+.attribution.theme-1{
+  background-color: var(--very-dark-desaturated-blue-keypad);
+  color:white;
 }
+
+.attribution.theme-1 > * > a {
+  color:rgb(152, 152, 216);
+}
+
+.attribution.theme-1 > * > a:visited {
+  color:rgb(174, 101, 196);
+}
+

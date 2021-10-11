@@ -140,10 +140,12 @@ function Calculator(props) {
   }
   
   return (
-    <div id="calculator">
-      <Header></Header>
-      <Screen value={activeValue.join("")}></Screen>
-      <Keypad onKeyPress={onKeyPress}></Keypad>
+    <div id="container" className="theme-1">
+      <div id="calculator">
+        <Header></Header>
+        <Screen value={activeValue.join("")}></Screen>
+        <Keypad onKeyPress={onKeyPress}></Keypad>
+      </div>
     </div>
   );
 }
