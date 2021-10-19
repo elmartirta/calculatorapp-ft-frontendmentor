@@ -131,7 +131,7 @@
 
 #keypad > div > button {
   font-family: Spartan, sans-serif;
-  margin: clamp(0px, 1vw, 8px);
+  margin: clamp(1px, 1vw, 8px);
   border-radius: 10px;
   font-size: clamp(var(--key-font-min), 1vw, var(--key-font-max));
   border: none;
