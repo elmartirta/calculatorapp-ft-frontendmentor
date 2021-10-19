@@ -11,8 +11,8 @@
 :root {
   /* Custom defined colors */
   /* Theme 1 */
+  --theme-1-container: hsl(222, 26%, 31%);
   --theme-1-screen: hsl(224, 36%, 15%);
-  --theme-1-main: hsl(222, 26%, 31%);
   --theme-1-keypad: hsl(223, 31%, 20%);
   --theme-1-text: hsl(221, 14%, 31%);
   --theme-1-key-background: hsl(30, 25%, 89%);
@@ -23,7 +23,7 @@
   --theme-1-strong-key-shadow: hsl(6, 70%, 34%);
 
   /* Theme 2 */
-  --theme-2-main: hsl(0, 0%, 90%);
+  --theme-2-container: hsl(0, 0%, 90%);
   --theme-2-screen: hsl(0, 0%, 93%);
   --theme-2-keypad: hsl(0, 5%, 81%);
   --theme-2-text: hsl(60, 10%, 19%);
@@ -35,7 +35,7 @@
   --theme-2-strong-key-shadow: hsl(25, 99%, 27%);
 
   /* Theme 3 */
-  --theme-3-main: hsl(268, 75%, 9%);
+  --theme-3-container: hsl(268, 75%, 9%);
   --theme-3-screen: hsl(268, 71%, 12%);
   --theme-3-keypad: hsl(268, 71%, 12%);
   --theme-3-text: hsl(52, 100%, 62%);
@@ -83,18 +83,16 @@
 }
 
 #container {
-  min-height: calc(100vh - var(--attribution-length) - 20px);
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-family: Spartan, sans-serif;
 }
-
-#container.theme-1 {
-  background-color: var(--theme-1-main);
-  color:white;
-}
+#container.theme-1 { background-color: var(--theme-1-container);}
+#container.theme-2 { background-color: var(--theme-2-container);}
+#container.theme-3 { background-color: var(--theme-3-container);}
 
 /* --- Calculator --- */
 #calculator {
@@ -149,9 +147,9 @@
   height: 350px;
 }
 
-#keypad.theme-1 {
-  background-color: var(--theme-1-keypad)
-}
+#keypad.theme-1 {background-color: var(--theme-1-keypad);}
+#keypad.theme-2 {background-color: var(--theme-2-keypad);}
+#keypad.theme-3 {background-color: var(--theme-3-keypad);}
 
 #keypad > div > button {
   font-family: Spartan, sans-serif;
@@ -165,28 +163,61 @@
   font-size: clamp(calc(var(--key-font-min) * 0.7), 4vw, calc(var(--key-font-max) * 0.8));
 }
 
+/* Normal Keys */
 #keypad.theme-1 > div > button {
   color: var(--theme-1-text);
   background-color: var(--theme-1-key-background);
   box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-1-key-shadow);
 }
+#keypad.theme-2 > div > button {
+  color: var(--theme-2-text);
+  background-color: var(--theme-2-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-2-key-shadow);
+}
+#keypad.theme-3 > div > button {
+  color: var(--theme-3-text);
+  background-color: var(--theme-3-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-3-key-shadow);
+}
 
+/* Strong keys */
 #keypad.theme-1 > div > button.strong-key {
   color: white;
   background-color: var(--theme-1-strong-key-background);
   box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-1-strong-key-shadow)
 }
+#keypad.theme-2 > div > button.strong-key {
+  color: white;
+  background-color: var(--theme-2-strong-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-2-strong-key-shadow)
+}
+#keypad.theme-3 > div > button.strong-key {
+  color: white;
+  background-color: var(--theme-3-strong-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-3-strong-key-shadow)
+}
 
-#keypad.theme-1 > div > button.emphasized-key {
+/* Emphasized Keys */
+#keypad.theme-1 > div > button.emphasized-key { 
   color: white;
   background-color: var(--theme-1-emphasis-key-background);
   box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-1-emphasis-key-shadow);
 }
+#keypad.theme-2 > div > button.emphasized-key {
+  color: white;
+  background-color: var(--theme-2-emphasis-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-2-emphasis-key-shadow);
+}
+#keypad.theme-3 > div > button.emphasized-key {
+  color: white;
+  background-color: var(--theme-3-emphasis-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-3-emphasis-key-shadow);
+}
 
 #keypad > div > button:active {
   transform: translate(var(--key-shadow-x), var(--key-shadow-y));
+  box-shadow: 0 0 black;
 }
-
 /* --- Screen --- */
 #screen {
   text-align:right;
@@ -195,11 +226,15 @@
   border-radius: 10px;
 }
 
-#screen.theme-1{
-  background-color: var(--theme-1-screen)
-}
+#screen.theme-1 {background-color: var(--theme-1-screen);}
+#screen.theme-2 {background-color: var(--theme-2-screen);}
+#screen.theme-3 {background-color: var(--theme-3-screen);}
+
 
 .attribution {
+  position:absolute;
+  bottom:0px;
+  width: 100vw;
   font-family: 'Atkinson Hyperlegible', sans-serif;
   font-size: 20px;
   text-align: center;
@@ -212,6 +247,14 @@
 
 .attribution.theme-1{
   background-color: var(--theme-1-keypad);
+  color:white;
+}
+.attribution.theme-1{
+  background-color: var(--theme-2-keypad);
+  color:white;
+}
+.attribution.theme-1{
+  background-color: var(--theme-3-keypad);
   color:white;
 }
 
