@@ -11,17 +11,40 @@
 :root {
   /* Custom defined colors */
   /* Theme 1 */
-  --very-dark-desaturated-blue-main: hsl(222, 26%, 31%);
-  --very-dark-desaturated-blue-keypad: hsl(223, 31%, 20%);
-  --very-dark-desaturated-blue-screen: hsl(224, 36%, 15%);
-  --desaturated-dark-blue-key-background: hsl(225, 21%, 49%);
-  --desaturated-dark-blue-key-shadow: hsl(224, 28%, 35%);
-  --red-key-background: hsl(6, 63%, 50%);
-  --dark-red-key-shadow: hsl(6, 70%, 34%);
-  --light-grayish-orange-key-background: hsl(30, 25%, 89%);
-  --grayish-orange-key-shadow: hsl(28, 16%, 65%);
-  --very-dark-grayish-blue-text: hsl(221, 14%, 31%);
+  --theme-1-screen: hsl(224, 36%, 15%);
+  --theme-1-main: hsl(222, 26%, 31%);
+  --theme-1-keypad: hsl(223, 31%, 20%);
+  --theme-1-text: hsl(221, 14%, 31%);
+  --theme-1-key-background: hsl(30, 25%, 89%);
+  --theme-1-key-shadow: hsl(28, 16%, 65%);
+  --theme-1-emphasis-key-background: hsl(225, 21%, 49%);
+  --theme-1-emphasis-key-shadow: hsl(224, 28%, 35%);
+  --theme-1-strong-key-background: hsl(6, 63%, 50%);
+  --theme-1-strong-key-shadow: hsl(6, 70%, 34%);
 
+  /* Theme 2 */
+  --theme-2-main: hsl(0, 0%, 90%);
+  --theme-2-screen: hsl(0, 0%, 93%);
+  --theme-2-keypad: hsl(0, 5%, 81%);
+  --theme-2-text: hsl(60, 10%, 19%);
+  --theme-2-key-background: hsl(45, 7%, 89%);
+  --theme-2-key-shadow: hsl(35, 11%, 61%);
+  --theme-2-emphasis-key-background: hsl(185, 42%, 37%);
+  --theme-2-emphasis-key-shadow: hsl(185, 58%, 25%);
+  --theme-2-strong-key-background: hsl(25, 98%, 40%);
+  --theme-2-strong-key-shadow: hsl(25, 99%, 27%);
+
+  /* Theme 3 */
+  --theme-3-main: hsl(268, 75%, 9%);
+  --theme-3-screen: hsl(268, 71%, 12%);
+  --theme-3-keypad: hsl(268, 71%, 12%);
+  --theme-3-text: hsl(52, 100%, 62%);
+  --theme-3-key-background: hsl(268, 47%, 21%);
+  --theme-3-key-shadow: hsl(290, 70%, 36%);
+  --theme-3-emphasis-key-background: hsl(281, 89%, 26%);
+  --theme-3-emphasis-key-shadow: hsl(285, 91%, 52%);
+  --theme-3-strong-key-background: hsl(176, 100%, 44%);
+  --theme-3-strong-key-shadow: hsl(177, 92%, 70%);
 
   /* Positioning */
   --key-shadow-x: 0px;
@@ -68,7 +91,7 @@
 }
 
 #container.theme-1 {
-  background-color: var(--very-dark-desaturated-blue-main);
+  background-color: var(--theme-1-main);
   color:white;
 }
 
@@ -126,7 +149,7 @@
 }
 
 #keypad.theme-1 {
-  background-color: var(--very-dark-desaturated-blue-keypad)
+  background-color: var(--theme-1-keypad)
 }
 
 #keypad > div > button {
@@ -142,21 +165,21 @@
 }
 
 #keypad.theme-1 > div > button {
-  color: var(--very-dark-grayish-blue-text);
-  background-color: var(--light-grayish-orange-key-background);
-  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--grayish-orange-key-shadow);
+  color: var(--theme-1-text);
+  background-color: var(--theme-1-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-1-key-shadow);
 }
 
 #keypad.theme-1 > div > button.strong-key {
   color: white;
-  background-color: var(--red-key-background);
-  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--dark-red-key-shadow)
+  background-color: var(--theme-1-strong-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-1-strong-key-shadow)
 }
 
 #keypad.theme-1 > div > button.emphasized-key {
   color: white;
-  background-color: var(--desaturated-dark-blue-key-background);
-  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--desaturated-dark-blue-key-shadow);
+  background-color: var(--theme-1-emphasis-key-background);
+  box-shadow: var(--key-shadow-x) var(--key-shadow-y) var(--theme-1-emphasis-key-shadow);
 }
 
 #keypad > div > button:active {
@@ -172,7 +195,7 @@
 }
 
 #screen.theme-1{
-  background-color: var(--very-dark-desaturated-blue-screen)
+  background-color: var(--theme-1-screen)
 }
 
 .attribution {
@@ -187,7 +210,7 @@
 }
 
 .attribution.theme-1{
-  background-color: var(--very-dark-desaturated-blue-keypad);
+  background-color: var(--theme-1-keypad);
   color:white;
 }
 
