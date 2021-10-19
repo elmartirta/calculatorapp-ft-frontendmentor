@@ -49,6 +49,7 @@
   /* Positioning */
   --key-shadow-x: 0px;
   --key-shadow-y: 3px;
+  --attribution-length: 1em;
 }
 
 .flex-grid {
@@ -82,7 +83,7 @@
 }
 
 #container {
-  min-height: 100vh;
+  min-height: calc(100vh - var(--attribution-length) - 20px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -206,7 +207,7 @@
 
 .attribution > p {
   margin:0px;
-  padding: 10px;
+  padding: calc(var(--attribution-length) / 2);
 }
 
 .attribution.theme-1{
