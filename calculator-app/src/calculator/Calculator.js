@@ -13,6 +13,7 @@ function Calculator(props) {
   const [willCache, setWillCache] = useState(false)
   const [prevState, setPrevState] = useState(KeyPress.EMPTY)
   const [canDelete, setCanDelete] = useState(true)
+  const [theme, setTheme] = useState("theme-3")
 
   function pushDigit(arr, keyPress){
     if (willCache){
@@ -140,11 +141,11 @@ function Calculator(props) {
   }
   
   return (
-    <div id="container" className="theme-1">
+    <div id="container" className={theme}>
       <div id="calculator">
-        <Header></Header>
-        <Screen value={activeValue.join("")}></Screen>
-        <Keypad onKeyPress={onKeyPress}></Keypad>
+        <Header theme={theme}></Header>
+        <Screen theme={theme} value={activeValue.join("")}></Screen>
+        <Keypad theme={theme} onKeyPress={onKeyPress}></Keypad>
       </div>
     </div>
   );

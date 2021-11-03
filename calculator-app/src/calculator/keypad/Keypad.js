@@ -6,7 +6,7 @@ function Keypad(props) {
     }
 
     return(
-        <div id="keypad" className="flex-grid shadowed theme-1">
+        <div id="keypad" className={"flex-grid shadowed "+props.theme}>
             <div className= "flex-row noselect">
                 <button onClick={(e) => keyPressEvent(e, KeyPress.SEVEN)}>7</button>
                 <button onClick={(e) => keyPressEvent(e, KeyPress.EIGHT)}>8</button>
